@@ -673,15 +673,8 @@ public:
         Converts the given wxRealPoint (with floating point coordinates) to a
         wxPoint instance.
 
-        Notice that this truncates the floating point values of @a pt
-        components, if you want to round them instead you need to do it
-        manually, e.g.
-        @code
-            #include <wx/math.h>    // for wxRound()
-
-            wxRealPoint rp = ...;
-            wxPoint p(wxRound(rp.x), wxRound(rp.y));
-        @endcode
+        @since 3.1.2
+        Coordinates are not truncated but rounded.
     */
     wxPoint(const wxRealPoint& pt);
 
@@ -720,6 +713,15 @@ public:
     wxSize operator *(int factor, const wxSize& sz);
     wxSize& operator /=(int factor);
     wxSize& operator *=(int factor);
+    //@}
+
+    /**
+       Overload, the multiplication/division is done with floating
+       point arithmetic and rounded.
+    */
+    //@{
+    wxSize& operator /=(double factor);
+    wxSize& operator *=(double factor);
     //@}
 
 
